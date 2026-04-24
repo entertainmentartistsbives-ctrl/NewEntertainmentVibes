@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
         });
 
         await transporter.sendMail({
-          from: `"Artistvibes Entertainment" <${process.env.EMAIL_USER}>`,
+          from: `"EntertainmentVibes" <${process.env.EMAIL_USER}>`,
           to: process.env.EMAIL_TO,
           subject: `📩 New Contact Message from ${name}`,
           html: `

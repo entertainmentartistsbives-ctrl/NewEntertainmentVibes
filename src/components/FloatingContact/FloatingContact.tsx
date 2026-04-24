@@ -13,7 +13,7 @@ export default function FloatingContact() {
       {open && (
         <div className={styles.panel}>
           <a
-            href="https://wa.me/918956059005?text=Hi!%20I%20want%20to%20book%20an%20artist."
+            href="https://wa.me/917204468429?text=Hi!%20I%20want%20to%20book%20an%20artist."
             target="_blank"
             rel="noreferrer"
             className={`${styles.option} ${styles.whatsapp}`}
@@ -26,14 +26,14 @@ export default function FloatingContact() {
             </div>
           </a>
           <a
-            href="tel:+918887929860"
+            href="tel:+917204468429"
             className={`${styles.option} ${styles.call}`}
             onClick={() => setOpen(false)}
           >
             <FaPhoneAlt className={styles.optionIcon} />
             <div>
               <div className={styles.optionTitle}>Call Us Now</div>
-              <div className={styles.optionSub}>+91 88879 29860</div>
+              <div className={styles.optionSub}>+91 72044 68429</div>
             </div>
           </a>
         </div>

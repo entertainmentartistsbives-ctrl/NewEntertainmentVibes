@@ -41,7 +41,7 @@ export default function Header() {
             </div>
           </div>
           <Link href="/" className={styles.logo}>
-            <img src="/logo.png" alt="Artistvibes Entertainment" className={styles.logoImg} />
+            <img src="/logo.png" alt="EntertainmentVibes" className={styles.logoImg} />
           </Link>
           <div className={styles.topRight}>
             <Link href="/contact" className={styles.contactBtn}>Contact Us</Link>
@@ -54,7 +54,7 @@ export default function Header() {
         <div className={styles.navInner}>
           {/* Mobile: show logo in navbar */}
           <Link href="/" className={styles.mobileLogo}>
-            <img src="/logo.png" alt="Artistvibes Entertainment" className={styles.mobileLogoImg} />
+            <img src="/logo.png" alt="EntertainmentVibes" className={styles.mobileLogoImg} />
           </Link>
 
           <div className={styles.navLinks}>

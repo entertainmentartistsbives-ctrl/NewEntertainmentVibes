@@ -42,28 +42,32 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: 'Name and category are required.' }, { status: 400 });
     }
 
+    const dataToSave = {
+      name,
+      category,
+      location: location || 'Mumbai',
+      bio: bio || '',
+      price: price || 'On Request',
+      imageUrl: imageUrl || '/images/placeholder-artist.jpg',
+      isExclusive: !!isExclusive,
+      isFeatured: !!isFeatured,
+      isTrending: !!isTrending,
+      isActive: isActive ?? true,
+      rating: (rating && !isNaN(parseFloat(rating))) ? parseFloat(rating) : 4.5,
+      eventsCount: (eventsCount && !isNaN(parseInt(eventsCount))) ? parseInt(eventsCount) : 0,
+      videoUrl: videoUrl || '',
+    };
+
+    console.log('[Admin POST artist] Attempting to create with data:', JSON.stringify(dataToSave, null, 2));
+
     const artist = await prisma.artist.create({
-      data: {
-        name,
-        category,
-        location: location || 'Mumbai',
-        bio: bio || '',
-        price: price || 'On Request',
-        imageUrl: imageUrl || '/images/placeholder-artist.jpg',
-        isExclusive: isExclusive ?? false,
-        isFeatured: isFeatured ?? false,
-        isTrending: isTrending ?? false,
-        isActive: isActive ?? true,
-        rating: rating ? parseFloat(rating) : 4.5,
-        eventsCount: eventsCount ? parseInt(eventsCount) : 0,
-        videoUrl: videoUrl || '',
-      },
+      data: dataToSave,
     });
 
     // --- Send Email Notifications to Subscribers ---
     try {
       const subscribers = await prisma.newsletterSubscriber.findMany();
-      if (subscribers.length > 0) {
+      if (subscribers && subscribers.length > 0) {
         const transporter = nodemailer.createTransport({
           host: process.env.EMAIL_HOST,
           port: parseInt(process.env.EMAIL_PORT || '587'),
@@ -77,7 +81,7 @@ export async function POST(req: NextRequest) {
         const emails = subscribers.map(sub => sub.email);
 
         const mailOptions = {
-          from: `"ArtistVibes Entertainment" <${process.env.EMAIL_USER}>`,
+          from: `"EntertainmentVibes" <${process.env.EMAIL_USER}>`,
           bcc: emails,
           subject: `🎤 New Artist Alert: ${artist.name} (${artist.category})`,
           html: `
@@ -90,7 +94,7 @@ export async function POST(req: NextRequest) {
               <p style="margin-top: 30px;">
                 <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/artists" style="background-color: #d4a843; color: #000; padding: 12px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">View & Book Now →</a>
               </p>
-              <p style="color: #555; font-size: 12px; margin-top: 40px;">You received this because you subscribed to ArtistVibes updates.</p>
+              <p style="color: #555; font-size: 12px; margin-top: 40px;">You received this because you subscribed to EntertainmentVibes updates.</p>
             </div>
           `,
         };
@@ -105,8 +109,8 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true, data: artist });
-  } catch (err) {
+  } catch (err: any) {
     console.error('[Admin POST artist]', err);
-    return NextResponse.json({ success: false, error: 'Failed to create artist.' }, { status: 500 });
+    return NextResponse.json({ success: false, error: err.message || 'Failed to create artist.' }, { status: 500 });
   }
 }

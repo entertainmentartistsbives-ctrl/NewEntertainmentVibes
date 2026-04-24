@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Brand */}
           <div className={styles.brand}>
             <Link href="/" className={styles.logo}>
-              <img src="/logo.png" alt="Artistvibes Entertainment" className={styles.logoImg} />
+              <img src="/logo.png" alt="EntertainmentVibes" className={styles.logoImg} />
             </Link>
             <p className={styles.tagline}>
               India&apos;s premier 360° artist, celebrity &amp; live show management company — delivering curated talent and luxury entertainment experiences.
@@ -34,7 +34,7 @@ export default function Footer() {
               <a href="https://instagram.com/artistvibes_entertainment" target="_blank" rel="noreferrer" aria-label="Instagram" className={styles.socialBtn}><FaInstagram /></a>
               <a href="https://facebook.com/ArtistvibesEntertainment" target="_blank" rel="noreferrer" aria-label="Facebook" className={styles.socialBtn}><FaFacebookF /></a>
               <a href="https://youtube.com/@ArtistvibesEntertainment" target="_blank" rel="noreferrer" aria-label="YouTube" className={styles.socialBtn}><FaYoutube /></a>
-              <a href="https://wa.me/918956059005" target="_blank" rel="noreferrer" aria-label="WhatsApp" className={`${styles.socialBtn} ${styles.socialWhatsapp}`}><FaWhatsapp /></a>
+              <a href="https://wa.me/917204468429" target="_blank" rel="noreferrer" aria-label="WhatsApp" className={`${styles.socialBtn} ${styles.socialWhatsapp}`}><FaWhatsapp /></a>
             </div>
           </div>
 
@@ -72,15 +72,15 @@ export default function Footer() {
               </li>
               <li>
                 <FaPhoneAlt className={styles.contactIcon} />
-                <a href="tel:+918887929860" className={styles.footerLink}>+91 88879 29860</a>
+                <a href="tel:+917204468429" className={styles.footerLink}>+91 72044 68429</a>
               </li>
               <li>
                 <FaWhatsapp className={styles.contactIcon} />
-                <a href="https://wa.me/918956059005" target="_blank" rel="noreferrer" className={styles.footerLink}>WhatsApp Us</a>
+                <a href="https://wa.me/917204468429" target="_blank" rel="noreferrer" className={styles.footerLink}>WhatsApp Us</a>
               </li>
               <li>
                 <FaEnvelope className={styles.contactIcon} />
-                <a href="mailto:artistmanagerabhishek@gmail.com" className={styles.footerLink}>artistmanagerabhishek@gmail.com</a>
+                <a href="mailto:entertainment.artistsbives@gmail.com" className={styles.footerLink}>AhanaAurora@gmail.com</a>
               </li>
             </ul>
           </div>
@@ -88,7 +88,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className={styles.bottom}>
-          <p>© {year} Artistvibes Entertainment. All rights reserved.</p>
+          <p>© {year} EntertainmentVibes. All rights reserved.</p>
           <p>Made with ♥ in Mumbai, India</p>
         </div>
       </div>

@@ -74,10 +74,11 @@
 }
 
 .logoImg {
-  height: 85px;
+  height: 110px; /* Increased for the new detailed logo */
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
 }
 
 .logo:hover .logoImg {
@@ -106,7 +107,7 @@
 
 /* ─── NAV BAR ────────────────────────────────────────────── */
 .navBar {
-  background: linear-gradient(135deg, #8b6914, #b8860b, #daa520, #f1c40f);
+  background: var(--orange-gradient);
   padding: 0;
 }
 
@@ -151,8 +152,9 @@
 }
 
 .mobileLogoImg {
-  height: 48px;
+  height: 60px;
   width: auto;
+  object-fit: contain;
 }
 
 /* Hamburger */

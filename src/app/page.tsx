@@ -244,7 +244,7 @@ export default function Home() {
         <div className="container">
           <div className={`section-header ${styles.animateOnScroll}`}>
             <span className="section-tag">Testimonial</span>
-            <h2 className="section-title">What Clients Say About ArtistVibes</h2>
+            <h2 className="section-title">What Clients Say About EntertainmentVibes</h2>
             <p className="section-subtitle">
               Real feedback from our talented artists and collaborators.
             </p>

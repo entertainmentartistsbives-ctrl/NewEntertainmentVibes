@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Admin Dashboard | Artistvibes Entertainment',
+  title: 'Admin Dashboard | EntertainmentVibes',
   robots: 'noindex, nofollow', // Prevent search engines from indexing the admin panel
 };
 

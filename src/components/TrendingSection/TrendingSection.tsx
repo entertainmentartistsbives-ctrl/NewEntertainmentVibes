@@ -45,7 +45,7 @@ export default function TrendingSection() {
         <div className={styles.contentWrapper}>
           <div className={styles.textContent}>
             <h2 className={styles.trendingTitle}>
-              Trending <span className={styles.yellowText}>ArtistVibes</span> Artists
+              Trending <span className={styles.yellowText}>EntertainmentVibes</span> Artists
             </h2>
           </div>
 

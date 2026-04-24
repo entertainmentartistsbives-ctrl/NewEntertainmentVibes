@@ -50,9 +50,9 @@ export default function ContactPage() {
     {
       icon: <FaPhoneAlt />,
       label: 'Call Us',
-      value: '+91 88879 29860',
+      value: '+91 72044 68429',
       sub: 'Mon – Sat, 10am – 8pm',
-      href: 'tel:+918887929860',
+      href: 'tel:+917204468429',
       color: '#d4a843',
     },
     {
@@ -60,15 +60,15 @@ export default function ContactPage() {
       label: 'WhatsApp',
       value: 'Chat Instantly',
       sub: 'Fastest response',
-      href: 'https://wa.me/918956059005',
+      href: 'https://wa.me/917204468429',
       color: '#25d366',
     },
     {
       icon: <FaEnvelope />,
       label: 'Email',
       value: 'artistmanager',
-      sub: 'abhishek@gmail.com',
-      href: 'mailto:artistmanagerabhishek@gmail.com',
+      sub: 'AhanaAurora@gmail.com',
+      href: 'mailto:entertainment.artistsbives@gmail.com',
       color: '#6c63ff',
     },
     {

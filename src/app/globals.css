@@ -17,32 +17,30 @@
   --bg-glass:         rgba(255, 255, 255, 0.04);
   --bg-glass-hover:   rgba(255, 255, 255, 0.07);
 
-  --gold-primary:     #FFD700;
-  --gold-secondary:   #FFA500;
-  --gold-light:       #FFFF00;
-  --gold-dark:        #DAA520;
-  --gold-glow:        rgba(255, 215, 0, 0.4);
-  --gold-gradient:    linear-gradient(135deg, #DAA520 0%, #FFD700 50%, #FFA500 100%);
+  --gold-primary:     #FF0080;
+  --gold-secondary:   #00BFFF;
+  --gold-light:       #40E0D0;
+  --gold-dark:        #FF8C00;
+  --gold-glow:        rgba(255, 0, 128, 0.4);
+  --gold-gradient:    linear-gradient(135deg, #FF0080, #FF8C00, #40E0D0, #00BFFF);
 
-  /* Legacy aliases */
-  --orange:           #b8860b;
-  --orange-light:     #daa520;
-  --orange-dark:      #8b6914;
-  --orange-glow:      rgba(184, 134, 11, 0.3);
-  --orange-gradient:  linear-gradient(135deg, #8b6914 0%, #b8860b 40%, #daa520 70%, #f1c40f 100%);
+  /* Legacy aliases - updated to rainbow */
+  --orange:           #FF0080;
+  --orange-light:     #00BFFF;
+  --orange-dark:      #FF8C00;
+  --orange-glow:      rgba(255, 0, 128, 0.3);
+  --orange-gradient:  linear-gradient(135deg, #FF0080, #FF8C00, #40E0D0, #00BFFF);
 
   /* Keep gold variables as aliases for backwards compatibility */
-  --gold:             #b8860b;
-  --gold-light:       #daa520;
-  --gold-dark:        #8b6914;
-  --gold-glow:        rgba(184, 134, 11, 0.3);
-  --gold-gradient:    linear-gradient(135deg, #8b6914 0%, #b8860b 40%, #daa520 70%, #f1c40f 100%);
+  --gold:             #FF0080;
+  --gold-light:       #00BFFF;
+  --gold-dark:        #FF8C00;
+  --gold-glow:        rgba(255, 0, 128, 0.3);
+  --gold-gradient:    linear-gradient(135deg, #FF0080, #FF8C00, #40E0D0, #00BFFF);
 
-
-
-  --accent:           #6c63ff;
-  --accent-light:     #8b83ff;
-  --accent-glow:      rgba(108, 99, 255, 0.25);
+  --accent:           #8a2be2;
+  --accent-light:     #da70d6;
+  --accent-glow:      rgba(138, 43, 226, 0.25);
 
   --text-primary:     #f0f0f5;
   --text-secondary:   #a0a0b8;
@@ -170,6 +168,22 @@ p {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-rainbow {
+  background: linear-gradient(
+    to right,
+    #FF0080, #FF8C00, #40E0D0, #00BFFF, #FF0080
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow-text 3s linear infinite;
+}
+
+@keyframes rainbow-text {
+  to { background-position: 200% center; }
 }
 
 /* ─── LAYOUT ─────────────────────────────────────────────── */

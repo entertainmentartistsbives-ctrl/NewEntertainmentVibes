@@ -49,14 +49,14 @@ export async function POST(req: NextRequest) {
       try {
         const transporter = createTransporter();
         await transporter.sendMail({
-          from: `"Artistvibes Entertainment" <${process.env.EMAIL_USER}>`,
+          from: `"EntertainmentVibes" <${process.env.EMAIL_USER}>`,
           to: process.env.EMAIL_TO,
           subject: `🎤 New Booking Request — ${eventType} by ${name}`,
           html: `
             <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0f;color:#f0f0f5;border-radius:12px;overflow:hidden;">
               <div style="background:linear-gradient(135deg,#d4a843,#f0c060);padding:24px;text-align:center;">
                 <h1 style="margin:0;color:#1a1200;font-size:22px;">🎤 New Booking Lead</h1>
-                <p style="margin:4px 0 0;color:#1a1200;opacity:0.8;">Artistvibes Entertainment</p>
+                <p style="margin:4px 0 0;color:#1a1200;opacity:0.8;">EntertainmentVibes</p>
               </div>
               <div style="padding:32px;">
                 <table style="width:100%;border-collapse:collapse;">

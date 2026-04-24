@@ -50,7 +50,7 @@ const ROW_CONFIG: { type: RowType; tag: string; title: string; subtitle: string 
     type: 'exclusive',
     tag: 'EXCLUSIVE',
     title: 'Exclusive Elite',
-    subtitle: 'Premium artists managed exclusively by ArtistVibes Entertainment.',
+    subtitle: 'Premium artists managed exclusively by EntertainmentVibes.',
   },
   {
     type: 'featured',

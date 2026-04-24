@@ -186,7 +186,8 @@ export default function AdminDashboard() {
         setArtistFormOpen(false);
         fetchArtists();
       } else {
-        alert('Failed to save artist');
+        const errorData = await res.json();
+        alert(`Failed to save artist: ${errorData.error || 'Unknown error'}`);
       }
     } catch (err) {
       alert('Error saving artist');
