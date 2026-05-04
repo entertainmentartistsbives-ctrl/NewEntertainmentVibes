@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     const systemPrompt = buildSystemPrompt(state)
-    const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest', systemInstruction: systemPrompt })
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash', systemInstruction: systemPrompt })
 
     // Format messages for Gemini
     const contents = messages.map(m => ({
@@ -26,13 +26,30 @@ export async function POST(req: NextRequest) {
       parts: [{ text: m.content }]
     }))
 
-    const result = await model.generateContent({
-      contents,
-      generationConfig: {
-        maxOutputTokens: 1000,
+    let result: any = null
+    let retries = 3
+    let delay = 1000
+    while (retries > 0) {
+      try {
+        result = await model.generateContent({
+          contents,
+          generationConfig: {
+            maxOutputTokens: 1000,
+          }
+        })
+        break
+      } catch (err: any) {
+        retries--
+        if (retries === 0) throw err
+        console.warn(`Gemini API error, retrying in ${delay}ms... (${retries} retries left). Error:`, err.message || err)
+        await new Promise(resolve => setTimeout(resolve, delay))
+        delay *= 2
       }
-    })
+    }
 
+    if (!result || !result.response) {
+      throw new Error('No response returned from Gemini API')
+    }
     const rawText = result.response.text()
 
     let parsed: AIResponse
