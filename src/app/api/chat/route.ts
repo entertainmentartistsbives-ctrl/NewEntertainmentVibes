@@ -18,7 +18,6 @@ export async function POST(req: NextRequest) {
     }
 
     const systemPrompt = buildSystemPrompt(state)
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash', systemInstruction: systemPrompt })
 
     // Format messages for Gemini
     const contents = messages.map(m => ({
@@ -26,29 +25,57 @@ export async function POST(req: NextRequest) {
       parts: [{ text: m.content }]
     }))
 
+    const fallbackModels = [
+      'gemini-1.5-flash-latest',
+      'gemini-1.5-flash',
+      'gemini-2.5-flash',
+      'gemini-2.0-flash-exp'
+    ]
     let result: any = null
-    let retries = 3
-    let delay = 1000
-    while (retries > 0) {
+    let success = false
+    let lastError: any = null
+
+    for (const modelName of fallbackModels) {
       try {
-        result = await model.generateContent({
-          contents,
-          generationConfig: {
-            maxOutputTokens: 1000,
+        const model = genAI.getGenerativeModel({ model: modelName, systemInstruction: systemPrompt })
+        
+        let retries = 3
+        let delay = 1000
+        while (retries > 0) {
+          try {
+            result = await model.generateContent({
+              contents,
+              generationConfig: {
+                maxOutputTokens: 1000,
+              }
+            })
+            success = true
+            break
+          } catch (err: any) {
+            retries--
+            const errMsg = String(err.message || err)
+            // If it's a 404 or 400 bad request (model not supported), don't bother retrying this model, move to next
+            if (errMsg.includes('404') || errMsg.includes('not found') || errMsg.includes('400')) {
+              break
+            }
+            if (retries === 0) throw err
+            console.warn(`Gemini API error for model ${modelName}, retrying in ${delay}ms... (${retries} retries left). Error:`, errMsg)
+            await new Promise(resolve => setTimeout(resolve, delay))
+            delay *= 2
           }
-        })
-        break
+        }
+
+        if (success) {
+          break
+        }
       } catch (err: any) {
-        retries--
-        if (retries === 0) throw err
-        console.warn(`Gemini API error, retrying in ${delay}ms... (${retries} retries left). Error:`, err.message || err)
-        await new Promise(resolve => setTimeout(resolve, delay))
-        delay *= 2
+        lastError = err
+        console.warn(`Failed with model ${modelName}, trying next fallback. Error:`, err.message || err)
       }
     }
 
-    if (!result || !result.response) {
-      throw new Error('No response returned from Gemini API')
+    if (!success || !result || !result.response) {
+      throw lastError || new Error('All Gemini model fallbacks failed')
     }
     const rawText = result.response.text()
 
