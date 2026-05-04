@@ -13,6 +13,7 @@ import FeaturedArtistsCarousel from '@/components/FeaturedArtistsCarousel/Featur
 import IntentSection from '@/components/IntentSection/IntentSection';
 import TrendingSection from '@/components/TrendingSection/TrendingSection';
 import ExclusiveArtists from '@/components/ExclusiveArtists/ExclusiveArtists';
+import AllArtistsMarquee from '@/components/AllArtistsMarquee/AllArtistsMarquee';
 import styles from './home.module.css';
 
 /* ── Scroll-triggered animation hook ────────────────── */
@@ -28,10 +29,12 @@ function useScrollAnimation() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add(styles.visible);
+            // Once visible, stop observing to save resources
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05 }
     );
 
     // Observe the container and all children with animation classes
@@ -173,6 +176,9 @@ export default function Home() {
 
       {/* ═══════════════════ FEATURED ARTISTS CAROUSEL ═══════════════════ */}
       <FeaturedArtistsCarousel />
+
+      {/* ═══════════════════ ALL ARTISTS MARQUEE ═══════════════════ */}
+      <AllArtistsMarquee />
 
       {/* ═══════════════════ ABOUT / EXPERIENCE ═══════════════════ */}
       <section className={styles.aboutSection} ref={aboutRef}>

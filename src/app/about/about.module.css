@@ -65,7 +65,6 @@
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1.2;
-  margin-bottom: 1.5rem;
 }
 
 .heroSubtitle {
@@ -236,7 +235,6 @@
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 700;
   color: var(--text-primary);
-  margin: 1rem 0 1.5rem;
   line-height: 1.25;
 }
 
@@ -244,7 +242,6 @@
   font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.8;
-  margin-bottom: 1.25rem;
 }
 
 .storyHighlights {

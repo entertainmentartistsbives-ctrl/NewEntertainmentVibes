@@ -7,6 +7,9 @@ import BookingModal from '@/components/BookingModal/BookingModal';
 import ArtistDetailsModal from '@/components/ArtistDetailsModal/ArtistDetailsModal';
 
 import IntentSection from '@/components/IntentSection/IntentSection';
+import TrendingSection from '@/components/TrendingSection/TrendingSection';
+import ExclusiveArtists from '@/components/ExclusiveArtists/ExclusiveArtists';
+import FeaturedArtistsCarousel from '@/components/FeaturedArtistsCarousel/FeaturedArtistsCarousel';
 
 /* ── TYPES ─────────────────────────────────────────────── */
 interface ArtistData {
@@ -312,7 +315,7 @@ function ArtistsDiscoveryContent() {
   return (
     <>
       {/* ═══ HERO SECTION ═══ */}
-      <section className="relative pt-[110px] pb-16 md:pt-[120px] md:pb-20 overflow-hidden bg-[#000000]">
+      <section className="relative pt-[220px] pb-16 md:pt-[240px] md:pb-20 overflow-hidden bg-[#000000]">
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
           <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-[#d4a843]/10 blur-[150px] rounded-full animate-pulse" />
           <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[70%] bg-[#ff4d4d]/5 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
@@ -366,20 +369,11 @@ function ArtistsDiscoveryContent() {
         </div>
       </section>
 
-      {/* ═══ 3 ROWS ═══ */}
+      {/* ═══ PREMIUM SECTIONS ═══ */}
       <section className="discovery-section">
-        <div className="container">
-          {ROW_CONFIG.map((config) => (
-            <ArtistRow
-              key={config.type}
-              config={config}
-              state={rows[config.type]}
-              onRetry={() => fetchRow(config.type, activeCategory)}
-              onView={openView}
-              onBook={openBooking}
-            />
-          ))}
-        </div>
+        <TrendingSection category={activeCategory} />
+        <ExclusiveArtists category={activeCategory} />
+        <FeaturedArtistsCarousel category={activeCategory} />
       </section>
 
       {/* ═══ MODALS ═══ */}

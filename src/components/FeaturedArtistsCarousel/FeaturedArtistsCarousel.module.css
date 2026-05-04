@@ -1,286 +1,239 @@
-/* ─── FEATURED ARTISTS CAROUSEL ──────────────────────── */
 .carouselSection {
-  padding: 8rem 0; /* Expanded vertical length */
-  background: #0a0a0a;
-}
-
-@media (max-width: 768px) {
-  .carouselSection { padding: 5rem 0; }
+  padding: 8rem 0;
+  background: #050505;
+  position: relative;
+  overflow: hidden;
 }
 
 .carouselHeader {
-  margin-bottom: 3rem;
   text-align: center;
+  margin-bottom: 4rem;
 }
 
 .carouselTagLine {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
 .carouselTagDash {
-  height: 1px;
   width: 40px;
+  height: 1px;
   background: linear-gradient(90deg, transparent, #C9A84C);
 }
 
 .carouselTag {
   color: #C9A84C;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
 }
 
 .carouselTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.25rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.25;
-  background: linear-gradient(135deg, #E8C96A 0%, #D4DCE6 60%, #C9A84C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.5rem;
 }
 
 .carouselSubtitle {
-  color: #A8B2C0;
-  font-size: 0.875rem;
-  line-height: 1.625;
-  max-width: 36rem;
+  color: #888;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 600px;
   margin: 0 auto;
 }
 
-.carouselRow {
+.carouselWrapper {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  position: relative;
 }
 
-.carouselBtn {
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
+.navBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 200ms ease;
   cursor: pointer;
-  border: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
-.carouselBtnDisabled {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.2);
-  cursor: default;
-}
-
-.carouselBtnPrev {
-  background: rgba(201, 168, 76, 0.1);
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  color: #C9A84C;
-}
-
-.carouselBtnPrev:hover {
-  background: rgba(201, 168, 76, 0.18);
-  box-shadow: 0 0 14px rgba(201, 168, 76, 0.25);
-}
-
-.carouselBtnNext {
-  background: linear-gradient(135deg, #C9A84C, #E8C96A);
+.navBtn:hover {
+  background: #C9A84C;
   color: #000;
-  box-shadow: 0 4px 18px rgba(201, 168, 76, 0.4);
+  border-color: #C9A84C;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
 }
 
-.carouselBtnNext:hover {
-  box-shadow: 0 6px 24px rgba(201, 168, 76, 0.6);
+.cardsContainer {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 2rem 0.5rem;
+  scrollbar-width: none; /* Firefox */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cardsContainer::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.artistCard {
+  flex: 0 0 260px;
+  height: 450px;
+  scroll-snap-align: start;
+  background: #111;
+  border-radius: 2rem;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.artistCard:hover {
+  transform: translateY(-10px);
+  background: #161616;
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center top, rgba(201, 168, 76, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.artistCard:hover .cardGlow {
+  opacity: 1;
+}
+
+.avatarWrapper {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.avatarOuter {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  transition: all 0.4s ease;
+}
+
+.artistCard:hover .avatarOuter {
+  background: linear-gradient(135deg, #C9A84C, #E8C96A);
   transform: scale(1.05);
 }
 
-.carouselCards {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+.avatarInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #111;
 }
 
-.carouselDots {
+.avatarInner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardInfo {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.cardCategory {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #C9A84C;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.cardName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.underline {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A84C, #E8C96A);
+  margin-top: 1rem;
+  transition: width 0.3s ease;
+  border-radius: 99px;
+}
+
+.artistCard:hover .underline {
+  width: 30px;
+}
+
+.dots {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2.5rem;
+  gap: 8px;
+  margin-top: 3rem;
 }
 
 .dot {
   width: 8px;
   height: 8px;
-  border-radius: 9999px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   padding: 0;
-  cursor: pointer;
-  transition: all 300ms ease;
-  background: rgba(168, 178, 192, 0.3);
-}
-
-.dotActive {
-  width: 22px;
-  background: linear-gradient(90deg, #C9A84C, #E8C96A);
-  box-shadow: 0 0 8px rgba(201, 168, 76, 0.5);
-}
-
-/* ── Artist Card ─────────────────────────────────────── */
-.artistCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 2rem;
-  padding: 4.5rem 1.5rem; /* Even more vertical padding */
-  min-height: 460px; /* Significantly expanded vertical length */
-  cursor: pointer;
-  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 10px 30px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
-}
-
-.artistCard:hover {
-  background: rgba(34, 34, 34, 0.8);
-  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.5), 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(201, 168, 76, 0.15);
-  transform: translateY(-12px);
-}
-
-.artistCardGlow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.3;
-  background-image: radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.12) 0%, transparent 65%);
-}
-
-.artistAvatar {
-  position: relative;
-  margin-bottom: 2.5rem; /* Pushed text further down */
-  width: 180px; /* Extremely large image to fill vertical space */
-  height: 180px;
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.artistCard:hover .artistAvatar {
-  transform: scale(1.05);
-}
-
-.artistAvatarRing {
-  width: 100%;
-  height: 100%;
-  border-radius: 9999px;
-  padding: 3px;
-  background: linear-gradient(135deg, #A8B2C0 0%, rgba(168, 178, 192, 0.3) 50%, #D4DCE6 100%);
-  box-shadow: 0 0 12px rgba(168, 178, 192, 0.15);
   transition: all 0.3s ease;
 }
 
-.artistCard:hover .artistAvatarRing {
-  background: linear-gradient(135deg, #C9A84C 0%, #D4DCE6 50%, #E8C96A 100%);
-  box-shadow: 0 0 20px rgba(201, 168, 76, 0.35), 0 0 6px rgba(201, 168, 76, 0.2);
-}
-
-.artistAvatarInner {
-  width: 100%;
-  height: 100%;
-  border-radius: 9999px;
-  overflow: hidden;
-}
-
-.artistAvatarInner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  filter: brightness(0.95);
-  transition: filter 0.3s ease;
-}
-
-.artistCard:hover .artistAvatarInner img {
-  filter: brightness(1.08) contrast(1.05);
-}
-
-.artistCategory {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-align: center;
-  transition: all 300ms ease;
-  color: #C9A84C;
-  margin-bottom: 0.5rem;
-}
-
-.artistCard:hover .artistCategory {
-  color: #E8C96A;
-}
-
-.artistName {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-align: center;
-  transition: all 300ms ease;
-  color: #D4DCE6;
-}
-
-.artistCard:hover .artistName {
-  color: #fff;
-}
-
-.artistUnderline {
-  margin-top: 0.5rem;
-  border-radius: 9999px;
-  transition: all 300ms ease;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #C9A84C, #E8C96A);
-}
-
-.artistCard:hover .artistUnderline {
-  width: 28px;
-  box-shadow: 0 0 6px rgba(201, 168, 76, 0.6);
-}
-
-/* ─── RESPONSIVE ─────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .carouselCards {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.dotActive {
+  width: 24px;
+  border-radius: 4px;
+  background: #C9A84C;
 }
 
 @media (max-width: 768px) {
-  .carouselCards {
-    grid-template-columns: repeat(2, 1fr);
+  .navBtn {
+    display: none;
   }
-
-  .carouselRow {
-    gap: 0.5rem;
+  .artistCard {
+    flex: 0 0 240px;
+    padding: 3rem 1rem;
   }
-
-  .carouselBtn {
-    width: 2rem;
-    height: 2rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .carouselCards {
-    grid-template-columns: 1fr;
+  .avatarOuter {
+    width: 120px;
+    height: 120px;
   }
 }

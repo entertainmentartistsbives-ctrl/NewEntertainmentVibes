@@ -158,14 +158,14 @@
   gap: 10px;
   padding: 10px 24px;
   border-radius: 999px;
-  background: rgba(212,168,67,0.08);
-  border: 1px solid rgba(212,168,67,0.25);
+  background: rgba(212, 168, 67, 0.08);
+  border: 1px solid rgba(212, 168, 67, 0.25);
   color: #d4a843;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-md);
   backdrop-filter: blur(8px);
   opacity: 0;
 }
@@ -181,7 +181,6 @@
   font-weight: 800;
   color: #fff;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
   opacity: 0;
 }
 
@@ -431,7 +430,7 @@
   border: 1px solid rgba(212,168,67,0.2);
   padding: 6px 16px;
   border-radius: 999px;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
 }
 
 .leftTitle {
@@ -439,7 +438,6 @@
   font-size: clamp(2rem, 3vw, 2.8rem);
   color: #fff;
   font-weight: 800;
-  margin-bottom: 1rem;
   line-height: 1.2;
 }
 
@@ -650,7 +648,6 @@
   font-size: clamp(1.5rem, 4vw, 2rem);
   color: #fff;
   font-weight: 800;
-  margin-bottom: 0.4rem;
   line-height: 1.2;
 }
 

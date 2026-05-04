@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaInstagram, FaFacebookF, FaYoutube } from 'react-icons/fa';
+import { FaBars, FaTimes, FaInstagram, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import styles from './Header.module.css';
 
 const navLinks = [
@@ -35,16 +35,16 @@ export default function Header() {
         <div className={styles.topBarInner}>
           <div className={styles.socialWrap}>
             <div className={styles.socialIcons}>
-              <a href="https://instagram.com/artistvibes_entertainment" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
-              <a href="https://facebook.com/ArtistvibesEntertainment" target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
-              <a href="https://youtube.com/@ArtistvibesEntertainment" target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
+              <a href="https://www.instagram.com/auraahana/" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
+              <a href="https://www.facebook.com/profile.php?id=100056046458184" target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+              <a href="https://www.linkedin.com/in/ahana-aura-109528271/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn /></a>
             </div>
           </div>
           <Link href="/" className={styles.logo}>
             <img src="/logo.png" alt="EntertainmentVibes" className={styles.logoImg} />
           </Link>
           <div className={styles.topRight}>
-            <Link href="/contact" className={styles.contactBtn}>Contact Us</Link>
+            <Link href="/contact" className={styles.contactBtn}>Get Started</Link>
           </div>
         </div>
       </div>

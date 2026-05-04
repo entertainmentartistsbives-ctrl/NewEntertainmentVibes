@@ -16,7 +16,7 @@
 .topBar {
   background: #000000;
   border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
 .topBarInner {
@@ -74,11 +74,11 @@
 }
 
 .logoImg {
-  height: 110px; /* Increased for the new detailed logo */
+  height: 100px; /* Increased from 80px for better visibility */
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); /* Added subtle glow */
 }
 
 .logo:hover .logoImg {
@@ -152,7 +152,7 @@
 }
 
 .mobileLogoImg {
-  height: 60px;
+  height: 80px;
   width: auto;
   object-fit: contain;
 }

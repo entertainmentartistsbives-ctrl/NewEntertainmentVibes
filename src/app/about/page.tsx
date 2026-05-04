@@ -24,8 +24,8 @@ const founder = {
   image: "/founder.jpg",
   bio: [
     "Ahana Aura is a leading name in the live entertainment and artist management industry, known for delivering exceptional musical experiences and professionally curated events. As the founder of EntertainmentVibes, he has established a strong presence in managing artists, organizing concerts, and executing high-impact events across India and internationally.",
-    "With years of industry experience, Ahana specializes in artist bookings, live concerts, college shows, and corporate entertainment solutions. His ability to understand audience preferences and match them with the right talent has made him a trusted partner for event organizers and brands.",
-    "From managing national tours to international performances, Ahana has worked closely with renowned artists and emerging talents, ensuring smooth execution and memorable performances. His strong network, attention to detail, and commitment to excellence set him apart in the entertainment space.",
+    "With years of industry experience, Ahana specializes in artist bookings, live concerts, college shows, and corporate entertainment solutions. Her ability to understand audience preferences and match them with the right talent has made her a trusted partner for event organizers and brands.",
+    "From managing national tours to international performances, Ahana has worked closely with renowned artists and emerging talents, ensuring smooth execution and memorable performances. Her strong network, attention to detail, and commitment to excellence set her apart in the entertainment space.",
   ],
   tags: ["Artist Management", "Event Production", "Pan-India Network"],
   social: {

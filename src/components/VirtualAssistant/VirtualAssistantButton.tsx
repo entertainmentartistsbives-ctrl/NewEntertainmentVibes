@@ -43,6 +43,7 @@ const VirtualAssistantButton = () => {
       {/* Floating Avatar Button */}
       {!assistantActive && (
         <button
+          suppressHydrationWarning
           className={`${styles.avatarFab} ${menuOpen ? styles.active : ''}`}
           onClick={toggleMenu}
           aria-label="Open contact options"

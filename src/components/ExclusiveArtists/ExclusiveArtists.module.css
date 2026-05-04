@@ -1,5 +1,5 @@
 .section {
-  padding: 9rem 0;
+  padding: 8rem 0;
   background: #080808;
   position: relative;
   overflow: hidden;
@@ -12,11 +12,11 @@
   transform: translate(-50%, -50%);
   width: 900px;
   height: 600px;
-  background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 0;
 }
 
-/* ── Header ── */
 .header {
   text-align: center;
   margin-bottom: 5rem;
@@ -27,17 +27,13 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .tagDash {
   width: 40px;
   height: 1px;
   background: linear-gradient(90deg, transparent, #C9A84C);
-}
-
-.tagDash:last-child {
-  background: linear-gradient(270deg, transparent, #C9A84C);
 }
 
 .tag {
@@ -50,15 +46,14 @@
 
 .title {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   color: #fff;
   margin-bottom: 1rem;
-  letter-spacing: -0.01em;
 }
 
 .highlight {
-  background: linear-gradient(135deg, #C9A84C, #E8C96A, #C9A84C);
+  background: linear-gradient(135deg, #C9A84C, #E8C96A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -67,27 +62,25 @@
 .subtitle {
   color: #888;
   font-size: 1rem;
-  max-width: 42ch;
+  max-width: 45ch;
   margin: 0 auto;
-  line-height: 1.7;
 }
 
-/* ── Book Container ── */
-.bookContainer {
+.viewerContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   position: relative;
+  z-index: 1;
 }
 
-/* ── Nav Buttons ── */
 .navBtn {
   width: 56px;
   height: 56px;
   border-radius: 50%;
   border: 1px solid rgba(201, 168, 76, 0.3);
-  background: rgba(201, 168, 76, 0.07);
+  background: rgba(201, 168, 76, 0.05);
   color: #C9A84C;
   display: flex;
   align-items: center;
@@ -95,345 +88,211 @@
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
-  z-index: 10;
 }
 
-.navBtn:hover:not(:disabled) {
-  background: rgba(201, 168, 76, 0.18);
-  border-color: rgba(201, 168, 76, 0.7);
-  box-shadow: 0 0 20px rgba(201, 168, 76, 0.25);
-  transform: scale(1.08);
+.navBtn:hover {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: #C9A84C;
+  transform: scale(1.1);
 }
 
-.navBtn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* ── Book ── */
-.book {
-  position: relative;
-  width: 780px;
-  max-width: 100%;
-}
-
-/* Depth / shadow pages behind the main page */
-.pageStack,
-.pageStack2 {
-  position: absolute;
-  inset: 0;
-  border-radius: 4px 20px 20px 4px;
-  background: #1a1510;
-}
-
-.pageStack {
-  transform: translate(6px, 6px);
-  opacity: 0.7;
-}
-
-.pageStack2 {
-  transform: translate(12px, 12px);
-  opacity: 0.4;
-}
-
-/* ── Main Page ── */
-.page {
+.card {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 520px;
-  border-radius: 4px 20px 20px 4px;
-  overflow: hidden;
-  box-shadow:
-    -8px 0 20px rgba(0, 0, 0, 0.6),
-    0 20px 60px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
-  transform-origin: left center;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-  position: relative;
-  z-index: 2;
-}
-
-/* Page flip animations */
-.flipNext {
-  animation: flipPageNext 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.flipPrev {
-  animation: flipPagePrev 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes flipPageNext {
-  0%   { transform: perspective(1200px) rotateY(0deg); opacity: 1; }
-  50%  { transform: perspective(1200px) rotateY(-90deg); opacity: 0.2; }
-  100% { transform: perspective(1200px) rotateY(0deg); opacity: 1; }
-}
-
-@keyframes flipPagePrev {
-  0%   { transform: perspective(1200px) rotateY(0deg); opacity: 1; }
-  50%  { transform: perspective(1200px) rotateY(90deg); opacity: 0.2; }
-  100% { transform: perspective(1200px) rotateY(0deg); opacity: 1; }
-}
-
-/* ── Left Page (Image) ── */
-.leftPage {
-  position: relative;
+  width: 900px;
+  min-height: 500px;
   background: #111;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.imageFrame {
-  width: 100%;
-  height: 100%;
+.cardFlipping {
+  opacity: 0.5;
+  transform: scale(0.98) rotateY(5deg);
+}
+
+.cardImage {
   position: relative;
 }
 
-.imageFrame img {
+.cardImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  display: block;
 }
 
-.imageOverlay {
+.pageIndicator {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    transparent 60%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
+  bottom: 2rem;
+  left: 2rem;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-.spineCrease {
+.pageIndicator span {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 5px;
+}
+
+.cardContent {
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #16120b 0%, #0a0a0a 100%);
+  position: relative;
+}
+
+.cardContent::before {
+  content: '';
   position: absolute;
   top: 0;
-  right: 0;
-  width: 30px;
+  left: 0;
+  width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0,0,0,0.5), transparent);
+  background-image: repeating-linear-gradient(rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 2.5rem);
   pointer-events: none;
 }
 
-.pageNumber {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-}
-
-.pageNumberTotal {
-  font-size: 1rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.5);
-  margin-left: 4px;
-}
-
-/* ── Right Page (Content) ── */
-.rightPage {
-  background: linear-gradient(160deg, #161207 0%, #0f0c05 100%);
-  border-left: 1px solid rgba(201, 168, 76, 0.15);
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.pageContent {
-  padding: 3rem 2.5rem;
-  width: 100%;
-  position: relative;
-  z-index: 2;
-}
-
-.artistCategory {
+.artistCategoryBadge {
   display: inline-block;
   font-size: 0.7rem;
   font-weight: 800;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
   color: #C9A84C;
-  margin-bottom: 1rem;
-  padding: 4px 12px;
   border: 1px solid rgba(201, 168, 76, 0.4);
+  padding: 4px 14px;
   border-radius: 99px;
+  width: fit-content;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
 }
 
 .artistName {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: 2.8rem;
   font-weight: 800;
   color: #fff;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   line-height: 1.1;
-  letter-spacing: -0.02em;
 }
 
 .artistMeta {
   display: flex;
   gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
 .metaItem {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.82rem;
-  color: #999;
+  font-size: 0.85rem;
+  color: #888;
 }
 
 .metaItem svg {
   color: #C9A84C;
-  flex-shrink: 0;
+}
+
+.bioWrapper {
+  margin-bottom: 2.5rem;
+  border-left: 1px solid rgba(201, 168, 76, 0.3);
+  padding-left: 1.5rem;
 }
 
 .artistBio {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #aaa;
-  line-height: 1.75;
-  margin-bottom: 2rem;
-  border-left: 2px solid rgba(201, 168, 76, 0.3);
-  padding-left: 1rem;
+  line-height: 1.7;
 }
 
-.priceBadge {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2rem;
+.priceSection {
+  margin-top: auto;
+  margin-bottom: 2.5rem;
 }
 
 .priceLabel {
-  font-size: 0.72rem;
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
   color: #666;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  margin-bottom: 5px;
 }
 
 .priceValue {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #E8C96A;
 }
 
 .bookBtn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 2rem;
+  gap: 10px;
   background: linear-gradient(135deg, #C9A84C, #E8C96A);
-  color: #0a0800;
-  font-weight: 700;
-  font-size: 0.9rem;
+  color: #000;
+  border: none;
+  padding: 12px 28px;
   border-radius: 99px;
-  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
   transition: all 0.3s ease;
-  letter-spacing: 0.02em;
+  width: fit-content;
 }
 
 .bookBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(201, 168, 76, 0.4);
 }
 
-/* Subtle texture */
-.pageLines {
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    transparent,
-    transparent 28px,
-    rgba(201, 168, 76, 0.03) 28px,
-    rgba(201, 168, 76, 0.03) 29px
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── Dots ── */
-.dots {
+.indicators {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  margin-top: 3rem;
+  gap: 10px;
+  margin-top: 3.5rem;
 }
 
 .dot {
   width: 8px;
   height: 8px;
-  border-radius: 99px;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .dotActive {
   width: 28px;
-  background: linear-gradient(90deg, #C9A84C, #E8C96A);
-  box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+  border-radius: 4px;
+  background: #C9A84C;
 }
 
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .book {
+@media (max-width: 1024px) {
+  .card {
     width: 100%;
-  }
-
-  .page {
     grid-template-columns: 1fr;
-    grid-template-rows: 380px auto;
+    min-height: auto;
   }
-
-  .leftPage {
-    border-radius: 0;
+  .cardImage {
+    height: 350px;
   }
-
-  .rightPage {
-    border-left: none;
-    border-top: 1px solid rgba(201, 168, 76, 0.15);
+  .cardContent {
+    padding: 2.5rem;
   }
-
-  .pageContent {
-    padding: 2rem 1.5rem;
-  }
-
-  .bookContainer {
-    gap: 1rem;
-  }
-
   .navBtn {
-    width: 44px;
-    height: 44px;
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .section {
-    padding: 6rem 0;
-  }
-
-  .bookContainer {
-    flex-direction: column;
-  }
-
-  .navBtn {
-    position: relative;
-  }
-
-  .bookContainer {
-    gap: 2rem;
-  }
-
-  .dots {
-    margin-top: 1.5rem;
+  .artistName {
+    font-size: 2rem;
   }
 }
