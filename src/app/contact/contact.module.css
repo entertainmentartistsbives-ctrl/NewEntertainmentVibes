@@ -160,7 +160,7 @@
   border-radius: 999px;
   background: rgba(212, 168, 67, 0.08);
   border: 1px solid rgba(212, 168, 67, 0.25);
-  color: #d4a843;
+  color: #ff6a00;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -185,7 +185,7 @@
 }
 
 .titleGlow {
-  background: linear-gradient(135deg, #d4a843, #f0c060, #d4a843);
+  background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
   background-size: 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -235,7 +235,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 1.6rem;
   font-weight: 800;
-  color: #d4a843;
+  color: #ff6a00;
 }
 
 .statLabel {
@@ -263,7 +263,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #d4a843;
+  background: #ff6a00;
   animation: scrollBob 1.8s ease-in-out infinite;
 }
 
@@ -306,15 +306,15 @@
 
 .infoCard:hover {
   transform: translateY(-6px);
-  border-color: var(--card-color, #d4a843);
+  border-color: var(--card-color, #ff6a00);
   background: rgba(255,255,255,0.04);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--card-color, #d4a843);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--card-color, #ff6a00);
 }
 
 .infoCardGlow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 50%, var(--card-color, #d4a843), transparent 60%);
+  background: radial-gradient(circle at 30% 50%, var(--card-color, #ff6a00), transparent 60%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -325,19 +325,19 @@
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: color-mix(in srgb, var(--card-color, #d4a843) 15%, transparent);
-  border: 1px solid color-mix(in srgb, var(--card-color, #d4a843) 30%, transparent);
+  background: color-mix(in srgb, var(--card-color, #ff6a00) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--card-color, #ff6a00) 30%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
-  color: var(--card-color, #d4a843);
+  color: var(--card-color, #ff6a00);
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
 .infoCard:hover .infoIconWrap {
-  background: var(--card-color, #d4a843);
+  background: var(--card-color, #ff6a00);
   color: #000;
   transform: scale(1.1) rotate(-5deg);
 }
@@ -354,7 +354,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--card-color, #d4a843);
+  color: var(--card-color, #ff6a00);
   margin-bottom: 2px;
 }
 
@@ -381,7 +381,7 @@
 }
 
 .infoCard:hover .infoArrow {
-  color: var(--card-color, #d4a843);
+  color: var(--card-color, #ff6a00);
   transform: translateX(4px);
 }
 
@@ -425,7 +425,7 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #d4a843;
+  color: #ff6a00;
   background: rgba(212,168,67,0.08);
   border: 1px solid rgba(212,168,67,0.2);
   padding: 6px 16px;
@@ -468,7 +468,7 @@
 }
 
 .hoursIcon {
-  color: #d4a843;
+  color: #ff6a00;
   font-size: 1.3rem;
   flex-shrink: 0;
   margin-top: 2px;
@@ -479,7 +479,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #d4a843;
+  color: #ff6a00;
   margin-bottom: 0.75rem;
 }
 
@@ -506,7 +506,7 @@
 
 .hoursRow:last-child { border-bottom: none; }
 
-.closed { color: #d4a843; }
+.closed { color: #ff6a00; }
 
 /* Map */
 .mapWrap {
@@ -686,7 +686,7 @@
 .fieldFilled .floatLabel {
   top: 0;
   font-size: 0.68rem;
-  color: #d4a843;
+  color: #ff6a00;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.09em;
@@ -722,7 +722,7 @@
   left: 0;
   height: 2px;
   width: 100%;
-  background: #d4a843;
+  background: #ff6a00;
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -736,7 +736,7 @@
   position: relative;
   width: 100%;
   height: 58px;
-  background: linear-gradient(135deg, #b8860b, #d4a843, #f0c060);
+  background: linear-gradient(135deg, #d4550a, #ff6a00, #ee0979);
   background-size: 200%;
   color: #000;
   font-weight: 800;

@@ -1,4 +1,3 @@
- /* ─── HEADER ─────────────────────────────────────────────── */
 .header {
   position: fixed;
   top: 0;
@@ -8,81 +7,61 @@
   transition: all 0.3s ease;
 }
 
-.header.scrolled .topBar {
-  display: none;
-}
-
-/* ─── TOP BAR ────────────────────────────────────────────── */
+/* --- TOP BAR --- */
 .topBar {
   background: #000000;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding: 8px 0;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .topBarInner {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 var(--space-xl);
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
 }
 
-.socialWrap {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.followLabel {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
 .socialIcons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .socialIcons a {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
-  transition: all 0.2s;
+  font-size: 1rem;
+  transition: all 0.3s ease;
   color: #fff;
 }
 
 .socialIcons a:nth-child(1) { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); } /* Instagram */
 .socialIcons a:nth-child(2) { background: #1877f2; } /* Facebook */
-.socialIcons a:nth-child(3) { background: #ff0000; } /* YouTube */
+.socialIcons a:nth-child(3) { background: #0077b5; } /* LinkedIn */
 
 .socialIcons a:hover {
-  transform: scale(1.15);
+  background: #c0c0c0 !important;
+  color: #000 !important;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 5px 15px rgba(192, 192, 192, 0.4);
 }
 
-/* Logo */
 .logo {
   display: flex;
   justify-content: center;
-  text-decoration: none;
 }
 
 .logoImg {
-  height: 100px; /* Increased from 80px for better visibility */
+  height: 90px;
   width: auto;
   object-fit: contain;
-  transition: transform 0.3s ease;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); /* Added subtle glow */
-}
-
-.logo:hover .logoImg {
-  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
 }
 
 .topRight {
@@ -90,60 +69,141 @@
   justify-content: flex-end;
 }
 
+.topAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px !important;
+  background: var(--vibrant-magenta) !important;
+  border: 1px solid var(--vibrant-magenta) !important;
+  border-radius: 4px !important;
+  color: white !important;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 0, 128, 0.2);
+}
+
+.topAction:hover {
+  background: #c0c0c0;
+  color: #000;
+  border-color: #c0c0c0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(192, 192, 192, 0.4);
+}
+
 .contactBtn {
-  padding: 10px 28px;
-  border: 1px solid var(--orange);
-  color: var(--orange);
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  background: var(--sunset-gradient);
+  border: none;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 900;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  box-shadow:
+    0 0 0 2px rgba(255, 106, 0, 0.4),
+    0 4px 24px rgba(238, 9, 121, 0.45),
+    0 8px 40px rgba(255, 106, 0, 0.25);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .contactBtn:hover {
   background: #c0c0c0;
-  color: #333;
+  color: #000;
+  box-shadow: 0 8px 35px rgba(192, 192, 192, 0.6);
+  transform: translateY(-3px) scale(1.04);
+  text-shadow: none;
 }
 
-/* ─── NAV BAR ────────────────────────────────────────────── */
+/* --- NAV BAR --- */
 .navBar {
-  background: var(--orange-gradient);
-  padding: 0;
+  background: var(--rainbow-gradient);
+  padding: 12px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .navInner {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 var(--space-xl);
+  padding: 0 2rem;
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 50px;
+  align-items: center;
 }
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  padding: 4px;
+  backdrop-filter: blur(10px);
 }
 
 .navLink {
-  font-size: 0.9rem;
-  font-weight: 600;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
   color: #fff;
-  padding: 6px 20px;
-  border: 1px solid rgba(255,255,0,0.6);
-  border-radius: 4px;
-  transition: all 0.2s;
+  padding: 10px 26px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   white-space: nowrap;
-  background: transparent;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
 }
 
-.navLink:hover,
+.navLink:hover {
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .navLink.active {
-  background: #c0c0c0;
-  border-color: #c0c0c0;
-  color: #333;
+  background: linear-gradient(135deg, #ff6a00 0%, #ff8c33 100%);
+  color: #fff;
+  border-color: rgba(255, 140, 51, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(255, 140, 51, 0.3),
+    0 4px 20px rgba(255, 106, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.activeDot {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
 }
 
 /* Mobile logo (hidden on desktop) */

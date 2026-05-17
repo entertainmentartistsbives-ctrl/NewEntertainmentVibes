@@ -8,7 +8,7 @@ import styles from './Header.module.css';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
+  { href: '/about', label: 'About Us' },
   { href: '/artists', label: 'Book Artists' },
   { href: '/contact', label: 'Contact Us' },
 ];
@@ -58,15 +58,19 @@ export default function Header() {
           </Link>
 
           <div className={styles.navLinks}>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href + link.label}
-                href={link.href}
-                className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href + link.label}
+                  href={link.href}
+                  className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                >
+                  <span className={styles.linkLabel}>{link.label}</span>
+                  {isActive && <span className={styles.activeDot} />}
+                </Link>
+              );
+            })}
           </div>
 
           <button

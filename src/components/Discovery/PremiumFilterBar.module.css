@@ -1,0 +1,304 @@
+/* ─────────────────────────────────────────────────────────────
+   PREMIUM FILTER BAR — CSS Module
+   ───────────────────────────────────────────────────────────── */
+
+.wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0 1rem;
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ════════════════════════════════════════════════════════
+   ROW 1 — Section Tab Bar
+   ════════════════════════════════════════════════════════ */
+.sectionTabBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 3rem;
+  padding: 0.35rem 0.45rem;
+  width: fit-content;
+}
+
+.sectionTab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 2.5rem;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.45);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.22s ease, transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+  overflow: hidden;
+}
+
+.sectionTab:hover:not(.sectionTabActive) {
+  color: rgba(255,255,255,0.8);
+  transform: translateY(-1px);
+}
+
+.sectionTabIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ── Active states per tab ── */
+.sectionTab[data-tab="ALL"].sectionTabActive {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #ffffff;
+}
+
+.sectionTab[data-tab="TRENDING"].sectionTabActive {
+  background: linear-gradient(135deg, #FF6B00 0%, #FF3366 100%);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(255,90,0,0.45);
+}
+
+.sectionTab[data-tab="EXCLUSIVE"].sectionTabActive {
+  background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(255,106,0,0.4);
+}
+
+.sectionTab[data-tab="FEATURED"].sectionTabActive {
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(139,92,246,0.4);
+}
+
+/* Shimmer sweep on active tab */
+.sectionTabActive::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 2.6s linear infinite;
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════════════════════
+   ROW 2 — Category Filter Bar
+   ════════════════════════════════════════════════════════ */
+.filterBar {
+  position: relative;
+  background: rgba(0,0,0,0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 3rem;
+  overflow: hidden;
+  width: 100%;
+  max-width: 820px;
+}
+
+.filterTrack {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  overflow-x: auto;
+  padding: 0.45rem 0.55rem;
+  scrollbar-width: none;
+}
+
+.filterTrack::-webkit-scrollbar { display: none; }
+
+/* "FILTER BY" label */
+.filterLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  color: rgba(255, 106, 0, 0.9);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  margin-right: 0.25rem;
+}
+
+.filterLabelIcon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Sliding background indicator ── */
+.slider {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: calc(100% - 10px);
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition:
+    left   0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width  0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
+  overflow: hidden;
+}
+
+.slider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 2.4s linear infinite;
+}
+
+/* ── Aurora glow ── */
+.sliderGlow {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 106, 0, 0.35) 0%, transparent 70%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition:
+    left   0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
+  animation: glowPulse 2.2s ease-in-out infinite;
+}
+
+/* ── Individual pill ── */
+.pill {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.5rem 1.05rem;
+  border-radius: 2rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255,255,255,0.42);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition:
+    color      0.25s ease,
+    border-color 0.25s ease,
+    transform  0.18s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.pill:not(.pillActive):hover {
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
+}
+
+.pillActive {
+  color: #fff;
+  border-color: transparent;
+}
+
+.pill:active { transform: scale(0.96); }
+
+.pillIcon {
+  font-size: 0.9rem;
+  line-height: 1;
+  display: inline-block;
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.pill:not(.pillActive):hover .pillIcon {
+  transform: scale(1.15) rotate(-6deg);
+}
+
+/* ── Click ripple ── */
+.ripple {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  animation: rippleExpand 0.6s linear forwards;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Edge fade overlays ── */
+.edgeFadeLeft,
+.edgeFadeRight {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 2.5rem;
+  pointer-events: none;
+  z-index: 10;
+}
+.edgeFadeLeft  { left:  0; background: linear-gradient(to right, rgba(0,0,0,0.85), transparent); }
+.edgeFadeRight { right: 0; background: linear-gradient(to left,  rgba(0,0,0,0.85), transparent); }
+
+/* ════════════════════════════════════════════════════════
+   Keyframes
+   ════════════════════════════════════════════════════════ */
+@keyframes shimmerSweep {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.8; transform: translate(-50%,-50%) scale(1);    }
+  50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.15); }
+}
+
+@keyframes rippleExpand {
+  to { width: 160px; height: 160px; opacity: 0; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .sectionTabBar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: calc(100vw - 2rem);
+  }
+  .sectionTabBar::-webkit-scrollbar { display: none; }
+  .sectionTab { padding: 0.5rem 0.9rem; font-size: 0.65rem; }
+  .pill { padding: 0.45rem 0.85rem; font-size: 0.63rem; }
+  .pillIcon { font-size: 0.82rem; }
+  .filterBar { max-width: calc(100vw - 2rem); }
+}

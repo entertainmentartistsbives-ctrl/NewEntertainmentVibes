@@ -1,13 +1,22 @@
 import { NextResponse } from 'next/server';
 import { prisma, withRetry } from '@/lib/prisma';
 
-export async function GET() {
+export const dynamic = 'force-dynamic';
+
+export async function GET(req: Request) {
   try {
+    const { searchParams } = new URL(req.url);
+    const category = searchParams.get('category');
+
+    const where: any = { isTrending: true, isActive: true };
+    if (category && category !== 'ALL') {
+      where.category = { equals: category, mode: 'insensitive' };
+    }
+
     const trendingArtists = await withRetry(() =>
       prisma.artist.findMany({
-        where: { isTrending: true, isActive: true },
+        where,
         orderBy: { order: 'asc' },
-        take: 5, // We only need 5 for the collage
       })
     );
     return NextResponse.json({ success: true, data: trendingArtists });

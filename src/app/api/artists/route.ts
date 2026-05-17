@@ -14,8 +14,8 @@ export async function GET(req: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const where: any = { isActive: true };
 
-    if (category)  where.category = category;
-    if (location)  where.location = { contains: location };
+    if (category)  where.category = { equals: category, mode: 'insensitive' };
+    if (location)  where.location = { contains: location, mode: 'insensitive' };
     if (featured === 'true')  where.isFeatured = true;
     if (exclusive === 'true') where.isExclusive = true;
 

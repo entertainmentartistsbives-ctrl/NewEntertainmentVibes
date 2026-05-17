@@ -169,13 +169,13 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════ TRENDING ARTISTS SECTION ═══════════════════ */}
-      <TrendingSection />
+      <TrendingSection isHome={true} />
 
       {/* ═══════════════════ EXCLUSIVE ARTISTS BOOK FLIP ═══════════════════ */}
-      <ExclusiveArtists />
+      <ExclusiveArtists isHome={true} />
 
       {/* ═══════════════════ FEATURED ARTISTS CAROUSEL ═══════════════════ */}
-      <FeaturedArtistsCarousel />
+      <FeaturedArtistsCarousel isHome={true} />
 
       {/* ═══════════════════ ALL ARTISTS MARQUEE ═══════════════════ */}
       <AllArtistsMarquee />

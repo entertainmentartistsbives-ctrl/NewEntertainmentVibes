@@ -34,7 +34,7 @@ const VirtualAssistantButton = () => {
             <span>Call Now</span>
           </a>
           <button onClick={launchAssistant} className={styles.menuItem}>
-            <FaRobot className={styles.icon} style={{ color: '#ff0080' }} />
+
             <span>Chat with AI Stylist</span>
           </button>
         </div>

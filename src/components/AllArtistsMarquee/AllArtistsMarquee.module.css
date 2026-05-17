@@ -17,15 +17,15 @@
 }
 
 .tagDash {
-  height: 1px;
+  height: 2px;
   width: 40px;
-  background: linear-gradient(90deg, transparent, var(--orange));
+  background: var(--sunset-gradient);
 }
 
 .tag {
-  color: var(--orange);
+  color: var(--sunset-color);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
 }
@@ -82,7 +82,7 @@
   justify-content: center;
   border-radius: 1.5rem;
   padding: 3rem 1rem;
-  min-height: 380px;
+  height: 380px;
   cursor: pointer;
   transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
   background: rgba(20, 20, 20, 0.6);
@@ -95,7 +95,7 @@
 
 .artistCard:hover {
   background: rgba(30, 30, 30, 0.8);
-  border-color: rgba(201, 168, 76, 0.4);
+  border-color: rgba(255, 106, 0, 0.4);
   transform: translateY(-8px);
 }
 
@@ -104,7 +104,7 @@
   inset: 0;
   pointer-events: none;
   opacity: 0.2;
-  background-image: radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.1) 0%, transparent 65%);
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(255, 106, 0, 0.15) 0%, transparent 65%);
 }
 
 .artistAvatar {
@@ -146,7 +146,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--sunset-color);
   margin-bottom: 0.4rem;
 }
 
@@ -160,7 +160,7 @@
   margin-top: 0.4rem;
   width: 0;
   height: 2px;
-  background: var(--orange-gradient);
+  background: var(--sunset-gradient);
   transition: width 0.3s ease;
 }
 

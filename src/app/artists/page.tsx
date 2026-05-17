@@ -10,6 +10,7 @@ import IntentSection from '@/components/IntentSection/IntentSection';
 import TrendingSection from '@/components/TrendingSection/TrendingSection';
 import ExclusiveArtists from '@/components/ExclusiveArtists/ExclusiveArtists';
 import FeaturedArtistsCarousel from '@/components/FeaturedArtistsCarousel/FeaturedArtistsCarousel';
+import PremiumFilterBar from '@/components/Discovery/PremiumFilterBar';
 
 /* ── TYPES ─────────────────────────────────────────────── */
 interface ArtistData {
@@ -141,7 +142,7 @@ function ArtistCard({
       {/* Info Area — flex:1 */}
       <div className="discovery-card__body">
         <div className="discovery-card__category">{artist.category.toUpperCase()}</div>
-        <h3 className="discovery-card__name group-hover:text-[#d4a843] transition-colors">{artist.name}</h3>
+        <h3 className="discovery-card__name group-hover:text-[#fbbf24] transition-colors">{artist.name}</h3>
         <div className="discovery-card__meta">
           <span className="discovery-card__rating">
             <FaStar /> {artist.rating}
@@ -180,7 +181,7 @@ function ArtistRow({
   return (
     <div className="discovery-row relative">
       {/* Decorative gradient behind row header */}
-      <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#d4a843]/5 blur-[80px] rounded-full pointer-events-none"></div>
+      <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#fbbf24]/5 blur-[80px] rounded-full pointer-events-none"></div>
       
       {/* Row Header */}
       <div className="discovery-row__header relative z-10">
@@ -243,6 +244,7 @@ function ArtistsDiscoveryContent() {
   const urlCategory = searchParams.get('category')?.toUpperCase() || 'ALL';
 
   const [activeCategory, setActiveCategory] = useState(urlCategory);
+  const [activeSection, setActiveSection] = useState<'ALL' | 'TRENDING' | 'EXCLUSIVE' | 'FEATURED'>('ALL');
   const [rows, setRows] = useState<Record<RowType, RowState>>({
     trending: { data: [], loading: true, error: null },
     exclusive: { data: [], loading: true, error: null },
@@ -315,25 +317,95 @@ function ArtistsDiscoveryContent() {
   return (
     <>
       {/* ═══ HERO SECTION ═══ */}
-      <section className="relative pt-[220px] pb-16 md:pt-[240px] md:pb-20 overflow-hidden bg-[#000000]">
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
-          <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[80%] bg-[#d4a843]/10 blur-[150px] rounded-full animate-pulse" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[70%] bg-[#ff4d4d]/5 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+      <section style={{
+        position: 'relative',
+        paddingTop: '100px',
+        paddingBottom: '80px',
+        overflow: 'hidden',
+        background: '#000000',
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: '-20%',
+            left: '-10%',
+            width: '60%',
+            height: '80%',
+            opacity: 0.2,
+            filter: 'blur(150px)',
+            borderRadius: '50%',
+            background: 'var(--vibrant-magenta)',
+          }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '-20%',
+            right: '-10%',
+            width: '50%',
+            height: '70%',
+            opacity: 0.1,
+            filter: 'blur(120px)',
+            borderRadius: '50%',
+            background: 'var(--vibrant-blue)',
+          }} />
         </div>
 
-        <div className="container relative z-10 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6 animate-fadeIn">
-            <span className="w-2 h-2 rounded-full bg-[#d4a843] animate-ping" />
-            <span className="text-[10px] font-black uppercase tracking-[4px] text-white/70">Premium Talent Roster</span>
+        <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '8px 24px',
+            borderRadius: '9999px',
+            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'rgba(255,255,255,0.05)',
+            backdropFilter: 'blur(12px)',
+            marginBottom: '32px',
+          }}>
+            <span style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--vibrant-magenta)',
+              animation: 'pulse 2s ease-in-out infinite',
+            }} />
+            <span style={{
+              fontSize: '10px',
+              fontWeight: 900,
+              textTransform: 'uppercase',
+              letterSpacing: '4px',
+              color: 'rgba(255,255,255,0.7)',
+            }}>Premium Talent Roster</span>
           </div>
           
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter uppercase mb-8 leading-[1] animate-slideUp">
-            Browse &amp;&nbsp;<span className="text-gradient">Book Artists</span>
+          <h1 style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+            fontWeight: 900,
+            color: '#fff',
+            letterSpacing: '-0.02em',
+            textTransform: 'uppercase',
+            marginBottom: '32px',
+            lineHeight: 1,
+          }}>
+            Browse &amp; <span style={{ 
+              background: 'var(--sunset-gradient)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}>Book Artists</span>
           </h1>
 
-          <div className="flex justify-center gap-4 animate-fadeIn" style={{ animationDelay: '300ms' }}>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent to-[#d4a843] rounded-full" />
-            <div className="w-24 h-1 bg-gradient-to-l from-transparent to-[#d4a843] rounded-full" />
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+            <div style={{ width: '96px', height: '4px', borderRadius: '9999px', background: 'linear-gradient(to right, transparent, var(--vibrant-magenta))' }} />
+            <div style={{ width: '96px', height: '4px', borderRadius: '9999px', background: 'linear-gradient(to left, transparent, var(--vibrant-magenta))' }} />
           </div>
         </div>
       </section>
@@ -345,35 +417,25 @@ function ArtistsDiscoveryContent() {
         </div>
       </section>
 
-      {/* ═══ CATEGORY FILTER BAR ═══ */}
-      <section className="discovery-filter shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-        <div className="container">
-          <div className="discovery-filter__inner">
-            {/* Filter icon */}
-            <span className="discovery-filter__icon" aria-hidden="true">
-              <FaSlidersH />
-            </span>
-            {/* Divider */}
-            <span className="discovery-filter__divider" />
-            {/* Pills */}
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => handleCategory(cat)}
-                className={`discovery-filter__pill ${activeCategory === cat ? 'discovery-filter__pill--active' : ''}`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ═══ PREMIUM FILTER BAR ═══ */}
+      <PremiumFilterBar
+        activeSection={activeSection}
+        onSectionChange={(s) => setActiveSection(s as any)}
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategory}
+      />
 
       {/* ═══ PREMIUM SECTIONS ═══ */}
       <section className="discovery-section">
-        <TrendingSection category={activeCategory} />
-        <ExclusiveArtists category={activeCategory} />
-        <FeaturedArtistsCarousel category={activeCategory} />
+        {(activeSection === 'ALL' || activeSection === 'TRENDING') && (
+          <TrendingSection category={activeCategory} onView={openView} onBook={openBooking} />
+        )}
+        {(activeSection === 'ALL' || activeSection === 'EXCLUSIVE') && (
+          <ExclusiveArtists category={activeCategory} onView={openView} onBook={openBooking} />
+        )}
+        {(activeSection === 'ALL' || activeSection === 'FEATURED') && (
+          <FeaturedArtistsCarousel category={activeCategory} onView={openView} onBook={openBooking} />
+        )}
       </section>
 
       {/* ═══ MODALS ═══ */}

@@ -1,11 +1,21 @@
 import { NextResponse } from 'next/server';
 import { prisma, withRetry } from '@/lib/prisma';
 
-export async function GET() {
+export const dynamic = 'force-dynamic';
+
+export async function GET(req: Request) {
   try {
+    const { searchParams } = new URL(req.url);
+    const category = searchParams.get('category');
+
+    const where: any = { isExclusive: true, isActive: true };
+    if (category && category !== 'ALL') {
+      where.category = { equals: category, mode: 'insensitive' };
+    }
+
     const artists = await withRetry(() =>
       prisma.artist.findMany({
-        where: { isExclusive: true, isActive: true },
+        where,
         orderBy: { order: 'asc' },
       })
     );

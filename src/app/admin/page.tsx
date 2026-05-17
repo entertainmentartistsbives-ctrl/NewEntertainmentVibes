@@ -27,6 +27,7 @@ const compressImage = (base64Str: string, maxWidth = 500): Promise<string> => {
 };
 
 export default function AdminDashboard() {
+  const [mounted, setMounted] = useState(false);
   const [token, setToken] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeTab, setActiveTab] = useState<'featured' | 'testimonials' | 'subscribers' | 'trending' | 'exclusive'>('featured');
@@ -37,6 +38,10 @@ export default function AdminDashboard() {
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Artist Form State
   const [artistFormOpen, setArtistFormOpen] = useState(false);
@@ -401,6 +406,8 @@ export default function AdminDashboard() {
   };
 
   // --- LOGIN SCREEN ---
+
+  if (!mounted) return null;
 
   if (!isLoggedIn) {
     return (
